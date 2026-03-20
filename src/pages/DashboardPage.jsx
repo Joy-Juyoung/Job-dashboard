@@ -1,4 +1,6 @@
+import StatCard from "../components/jobs/StatCard";
 import MainLayout from "../components/layout/MainLayout";
+import dashboardStats from "../data/dashboardStats";
 
 function DashboardPage() {
   return (
@@ -12,8 +14,21 @@ function DashboardPage() {
         </section>
 
         <section className="rounded-xl border bg-white p-6 shadow-sm">
+          <p className="text-sm text-gray-500 ">
+            {dashboardStats.map((stat) => (
+              <StatCard
+                key={stat.id}
+                label={stat.label}
+                value={stat.value}
+                description={stat.description}
+              />
+            ))}
+          </p>
+        </section>
+
+        <section className="rounded-xl border bg-white p-6 shadow-sm">
           <p className="text-sm text-gray-500">
-            Dashboard content will go here.
+            Recent applications section will go here.
           </p>
         </section>
       </div>
