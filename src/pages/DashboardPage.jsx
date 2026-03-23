@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import MainLayout from "../components/layout/MainLayout";
 import StatCard from "../components/jobs/StatCard";
 import JobCard from "../components/jobs/JobCard";
@@ -8,12 +8,25 @@ import dashboardStats from "../data/dashboardStats";
 import initialJobs from "../data/jobs";
 
 function DashboardPage() {
-  const [jobList, setJobList] = useState(initialJobs);
   const [selectedStatus, setSelectedStatus] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   const filterOptions = ["All", "Applied", "Interview", "Offer", "Rejected"];
+
+  const [jobList, setJobList] = useState(() => {
+    const savedJobs = localStorage.getItem("jobs");
+
+    if (savedJobs) {
+      return JSON.parse(savedJobs);
+    }
+
+    return initialJobs;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("jobs", JSON.stringify(jobList));
+  }, [jobList]);
 
   function handleAddJob(newJob) {
     setJobList((prev) => [newJob, ...prev]);
