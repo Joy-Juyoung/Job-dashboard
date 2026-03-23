@@ -1,27 +1,26 @@
-import jobs from "../data/jobs";
-import JobCard from "../components/jobs/JobCard";
-import StatCard from "../components/jobs/StatCard";
-import MainLayout from "../components/layout/MainLayout";
-import dashboardStats from "../data/dashboardStats";
 import { useMemo, useState } from "react";
+import MainLayout from "../components/layout/MainLayout";
+import StatCard from "../components/jobs/StatCard";
+import JobCard from "../components/jobs/JobCard";
 import StatusFilter from "../components/jobs/StatusFilter";
+import AddJobForm from "../components/jobs/AddJobForm";
+import dashboardStats from "../data/dashboardStats";
+import initialJobs from "../data/jobs";
 
 function DashboardPage() {
+  const [jobList, setJobList] = useState(initialJobs);
   const [selectedStatus, setSelectedStatus] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
+  const [isFormOpen, setIsFormOpen] = useState(false);
 
   const filterOptions = ["All", "Applied", "Interview", "Offer", "Rejected"];
 
-  // const filteredJobs = useMemo(() => {
-  //   if (selectedStatus === "All") {
-  //     return jobs;
-  //   }
-
-  //   return jobs.filter((job) => job.status === selectedStatus);
-  // }, [selectedStatus]);
+  function handleAddJob(newJob) {
+    setJobList((prev) => [newJob, ...prev]);
+  }
 
   const filteredJobs = useMemo(() => {
-    return jobs.filter((job) => {
+    return jobList.filter((job) => {
       const matchesStatus =
         selectedStatus === "All" || job.status === selectedStatus;
 
@@ -33,29 +32,46 @@ function DashboardPage() {
 
       return matchesStatus && matchesSearch;
     });
-  }, [selectedStatus, searchTerm]);
+  }, [jobList, selectedStatus, searchTerm]);
 
   return (
     <MainLayout>
       <div className="space-y-6">
         <section>
-          <h1 className="text-2xl font-bold">Job Dashboard</h1>
-          <p className="text-sm text-gray-600">
-            Track your applications and job search progress.
-          </p>
+          <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+            <div>
+              <h1 className="text-2xl font-bold">Job Dashboard</h1>
+              <p className="text-sm text-gray-600">
+                Track your applications and job search progress.
+              </p>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setIsFormOpen((prev) => !prev)}
+              className="rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800"
+            >
+              {isFormOpen ? "Close Form" : "Add New Job"}
+            </button>
+          </div>
         </section>
 
-        <section className="rounded-xl border bg-white p-6 shadow-sm">
-          <p className="text-sm text-gray-500 ">
-            {dashboardStats.map((stat) => (
-              <StatCard
-                key={stat.id}
-                label={stat.label}
-                value={stat.value}
-                description={stat.description}
-              />
-            ))}
-          </p>
+        {isFormOpen && (
+          <AddJobForm
+            onAddJob={handleAddJob}
+            onClose={() => setIsFormOpen(false)}
+          />
+        )}
+
+        <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {dashboardStats.map((stat) => (
+            <StatCard
+              key={stat.id}
+              label={stat.label}
+              value={stat.value}
+              description={stat.description}
+            />
+          ))}
         </section>
 
         <section className="space-y-4">
