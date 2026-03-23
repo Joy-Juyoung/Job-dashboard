@@ -49,23 +49,31 @@ function AddJobForm({ onAddJob, onClose }) {
   }
 
   return (
-    <div className="rounded-xl border bg-white p-6 shadow-sm">
-      <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-lg font-semibold">Add New Application</h3>
+    <section className="rounded-2xl border bg-white p-6 shadow-sm">
+      <div className="mb-6 flex items-center justify-between">
+        <div>
+          <h3 className="text-lg font-semibold text-gray-900">
+            Add New Application
+          </h3>
+          <p className="mt-1 text-sm text-gray-500">
+            Add a new job application to your dashboard.
+          </p>
+        </div>
+
         <button
           type="button"
           onClick={onClose}
-          className="rounded-lg px-3 py-2 text-sm text-gray-500 hover:bg-gray-100"
+          className="rounded-lg px-3 py-2 text-sm text-gray-500 transition hover:bg-gray-100"
         >
           Close
         </button>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
+      <form onSubmit={handleSubmit} className="grid gap-4 md:grid-cols-2">
+        <div className="md:col-span-1">
           <label
             htmlFor="company"
-            className="mb-1 block text-sm font-medium text-gray-700"
+            className="mb-1.5 block text-sm font-medium text-gray-700"
           >
             Company
           </label>
@@ -80,10 +88,10 @@ function AddJobForm({ onAddJob, onClose }) {
           />
         </div>
 
-        <div>
+        <div className="md:col-span-1">
           <label
             htmlFor="position"
-            className="mb-1 block text-sm font-medium text-gray-700"
+            className="mb-1.5 block text-sm font-medium text-gray-700"
           >
             Position
           </label>
@@ -101,7 +109,7 @@ function AddJobForm({ onAddJob, onClose }) {
         <div>
           <label
             htmlFor="status"
-            className="mb-1 block text-sm font-medium text-gray-700"
+            className="mb-1.5 block text-sm font-medium text-gray-700"
           >
             Status
           </label>
@@ -122,7 +130,7 @@ function AddJobForm({ onAddJob, onClose }) {
         <div>
           <label
             htmlFor="location"
-            className="mb-1 block text-sm font-medium text-gray-700"
+            className="mb-1.5 block text-sm font-medium text-gray-700"
           >
             Location
           </label>
@@ -137,24 +145,24 @@ function AddJobForm({ onAddJob, onClose }) {
           />
         </div>
 
-        <div className="flex justify-end gap-3">
+        <div className="flex justify-end gap-3 md:col-span-2">
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg border bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100"
+            className="rounded-lg border bg-white px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-gray-100"
           >
             Cancel
           </button>
 
           <button
             type="submit"
-            className="rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800"
+            className="rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-gray-800"
           >
             Add Job
           </button>
         </div>
       </form>
-    </div>
+    </section>
   );
 }
 

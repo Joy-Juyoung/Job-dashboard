@@ -104,20 +104,26 @@ function DashboardPage() {
 
   return (
     <MainLayout>
-      <div className="space-y-6">
-        <section>
+      <div className="space-y-8">
+        <section className="rounded-2xl border bg-white p-6 shadow-sm">
           <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-            <div>
-              <h1 className="text-2xl font-bold">Job Dashboard</h1>
-              <p className="text-sm text-gray-600">
-                Track your applications and job search progress.
+            <div className="max-w-2xl">
+              <p className="text-sm font-medium text-gray-500">
+                Frontend Job Search Tracker
+              </p>
+              <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900">
+                Job Dashboard
+              </h1>
+              <p className="mt-3 text-sm text-gray-600">
+                Track your applications, monitor progress, and stay organized
+                during your job search.
               </p>
             </div>
 
             <button
               type="button"
               onClick={() => setIsFormOpen((prev) => !prev)}
-              className="rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800"
+              className="rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-gray-800"
             >
               {isFormOpen ? "Close Form" : "Add New Job"}
             </button>
@@ -142,11 +148,13 @@ function DashboardPage() {
           ))}
         </section>
 
-        <section className="space-y-4">
+        <section className="space-y-4 rounded-2xl border bg-white p-6 shadow-sm">
           <div className="flex flex-col gap-3">
             <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
               <div>
-                <h2 className="text-lg font-semibold">Recent Applications</h2>
+                <h2 className="text-lg font-semibold text-gray-900">
+                  Recent Applications
+                </h2>
                 <p className="text-sm text-gray-500">
                   Showing {totalVisibleJobs} application
                   {totalVisibleJobs === 1 ? "" : "s"}
@@ -174,7 +182,7 @@ function DashboardPage() {
                   <button
                     type="button"
                     onClick={() => setSearchTerm("")}
-                    className="rounded-lg border bg-white px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-100"
+                    className="rounded-lg border bg-white px-4 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-100"
                   >
                     Clear Search
                   </button>
@@ -183,7 +191,7 @@ function DashboardPage() {
                 <button
                   type="button"
                   onClick={handleResetFilters}
-                  className="rounded-lg border bg-white px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-100"
+                  className="rounded-lg border bg-white px-4 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-100"
                 >
                   Reset Filters
                 </button>
@@ -206,7 +214,7 @@ function DashboardPage() {
               ))}
             </div>
           ) : (
-            <div className="rounded-xl border bg-white p-6 text-sm text-gray-500 shadow-sm">
+            <div className="rounded-2xl border border-dashed bg-gray-50 p-8 text-center text-sm text-gray-500">
               No applications match your current filters.
             </div>
           )}
