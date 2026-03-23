@@ -22,7 +22,7 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
       )}
 
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-64 border-r bg-white p-6 transition-transform duration-300 lg:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-50 w-64 border-r border-gray-200 bg-white p-6 transition-transform duration-300 lg:translate-x-0 ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >

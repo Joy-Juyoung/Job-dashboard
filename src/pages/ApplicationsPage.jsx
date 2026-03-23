@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import AddJobForm from "../components/jobs/AddJobForm";
-import JobCard from "../components/jobs/JobCard";
 import ApplicationsControls from "../components/jobs/ApplicationsControls";
+import ApplicationRow from "../components/jobs/ApplicationRow";
 
 function ApplicationsPage({ jobList, onAddJob, onUpdateJob, onDeleteJob }) {
   const [selectedStatus, setSelectedStatus] = useState("All");
@@ -63,7 +63,7 @@ function ApplicationsPage({ jobList, onAddJob, onUpdateJob, onDeleteJob }) {
 
   return (
     <div className="space-y-8">
-      <section className="rounded-2xl border bg-white p-6 shadow-sm">
+      <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
         <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
           <div>
             <p className="text-sm font-medium text-gray-500">
@@ -89,7 +89,7 @@ function ApplicationsPage({ jobList, onAddJob, onUpdateJob, onDeleteJob }) {
               setEditingJob(null);
               setIsFormOpen((prev) => !prev);
             }}
-            className="rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-gray-800"
+            className="rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-colors duration-200 hover:bg-gray-800"
           >
             {isFormOpen && !editingJob ? "Close Form" : "Add New Job"}
           </button>
@@ -105,7 +105,7 @@ function ApplicationsPage({ jobList, onAddJob, onUpdateJob, onDeleteJob }) {
         />
       )}
 
-      <section className="space-y-4 rounded-2xl border bg-white p-6 shadow-sm">
+      <section className="space-y-5 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
         <ApplicationsControls
           totalVisibleJobs={totalVisibleJobs}
           filterOptions={filterOptions}
@@ -118,9 +118,9 @@ function ApplicationsPage({ jobList, onAddJob, onUpdateJob, onDeleteJob }) {
         />
 
         {filteredJobs.length > 0 ? (
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="space-y-4">
             {filteredJobs.map((job) => (
-              <JobCard
+              <ApplicationRow
                 key={job.id}
                 id={job.id}
                 company={job.company}
@@ -133,7 +133,7 @@ function ApplicationsPage({ jobList, onAddJob, onUpdateJob, onDeleteJob }) {
             ))}
           </div>
         ) : (
-          <div className="rounded-2xl border border-dashed bg-gray-50 p-8 text-center text-sm text-gray-500">
+          <div className="rounded-2xl border border-dashed border-gray-200 bg-gray-50 p-8 text-center text-sm text-gray-500">
             No applications match your current filters.
           </div>
         )}

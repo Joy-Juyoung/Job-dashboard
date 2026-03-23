@@ -1,5 +1,5 @@
-import { useLocation } from "react-router-dom";
-import { HiOutlineMenu } from "react-icons/hi";
+import { Link, useLocation } from "react-router-dom";
+import { HiOutlineMenu, HiOutlineHome } from "react-icons/hi";
 
 function Header({ setIsSidebarOpen }) {
   const location = useLocation();
@@ -13,12 +13,20 @@ function Header({ setIsSidebarOpen }) {
   const currentLabel = pageLabels[location.pathname] || "Job Dashboard";
 
   return (
-    <header className="border-b bg-white px-6 py-4">
+    <header className="border-b border-gray-200 bg-white px-6 py-4">
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-xs font-medium uppercase tracking-wide text-gray-400">
-            Job Dashboard
-          </p>
+          <Link
+            to="/"
+            className="flex items-center gap-2 text-gray-500 hover:text-gray-700"
+          >
+            <HiOutlineHome className="h-4 w-4 -mt-[1px]" />
+
+            <span className="text-xs font-medium uppercase tracking-wide leading-none">
+              Job Dashboard
+            </span>
+          </Link>
+
           <p className="mt-1 text-sm text-gray-600">{currentLabel}</p>
         </div>
 

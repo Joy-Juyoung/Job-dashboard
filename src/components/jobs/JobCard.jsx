@@ -11,7 +11,7 @@ function JobCard({
   showActions = true,
 }) {
   return (
-    <article className="rounded-2xl border bg-white p-6 shadow-sm transition hover:shadow-md">
+    <article className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md">
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
           <p className="text-sm font-medium text-gray-500">{company}</p>

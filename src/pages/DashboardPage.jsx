@@ -3,6 +3,7 @@ import AddJobForm from "../components/jobs/AddJobForm";
 import JobCard from "../components/jobs/JobCard";
 import StatCard from "../components/jobs/StatCard";
 import { useState } from "react";
+import { HiArrowRight } from "react-icons/hi";
 
 function DashboardPage({ jobList, dashboardStats, onAddJob }) {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -15,7 +16,7 @@ function DashboardPage({ jobList, dashboardStats, onAddJob }) {
 
   return (
     <div className="space-y-8">
-      <section className="rounded-2xl border bg-white p-6 shadow-sm">
+      <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
         <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
           <div className="max-w-2xl">
             <p className="text-sm font-medium text-gray-500">
@@ -49,7 +50,7 @@ function DashboardPage({ jobList, dashboardStats, onAddJob }) {
         />
       )}
 
-      <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+      <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {dashboardStats.map((stat) => (
           <StatCard
             key={stat.id}
@@ -60,7 +61,7 @@ function DashboardPage({ jobList, dashboardStats, onAddJob }) {
         ))}
       </section>
 
-      <section className="space-y-4 rounded-2xl border bg-white p-6 shadow-sm">
+      <section className="space-y-4 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-lg font-semibold text-gray-900">
@@ -73,9 +74,10 @@ function DashboardPage({ jobList, dashboardStats, onAddJob }) {
 
           <Link
             to="/applications"
-            className="text-sm font-medium text-gray-700 underline-offset-4 hover:underline"
+            className="group inline-flex items-center gap-1 text-sm font-medium text-gray-600 transition-colors hover:text-gray-900"
           >
             Go to Applications
+            <HiArrowRight className="h-4 w-4 transform transition-transform duration-200 ease-out group-hover:translate-x-1" />
           </Link>
         </div>
 
@@ -90,8 +92,6 @@ function DashboardPage({ jobList, dashboardStats, onAddJob }) {
                 status={job.status}
                 location={job.location}
                 showActions={false}
-                // onDelete={() => {}}
-                // onEdit={() => {}}
               />
             ))}
           </div>
