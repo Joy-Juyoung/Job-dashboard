@@ -1,12 +1,12 @@
 import { useState } from "react";
-import AddJobForm from "../components/jobs/AddJobForm";
+import AddJobForm from "../components/jobs/form/AddJobForm";
 import StatCard from "../components/jobs/StatCard";
 import RecentApplicationsSection from "../components/dashboard/RecentApplicationsSection";
+import useRecentJobs from "../hooks/useRecentJobs";
 
 function DashboardPage({ jobList, dashboardStats, onAddJob }) {
   const [isFormOpen, setIsFormOpen] = useState(false);
-
-  const recentJobs = jobList.slice(0, 5);
+  const recentJobs = useRecentJobs(jobList, 4);
 
   function handleCloseForm() {
     setIsFormOpen(false);

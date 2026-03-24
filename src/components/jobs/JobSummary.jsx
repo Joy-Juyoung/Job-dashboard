@@ -20,12 +20,22 @@ function JobSummary({
         {position}
       </h3>
 
-      <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gray-500">
+      <div className="mt-1 flex flex-col gap-1 text-sm text-gray-500">
         <span>{location}</span>
 
-        {appliedDate && <span>Applied: {formatDate(appliedDate)}</span>}
+        {(appliedDate || secondaryLabel) && (
+          <div className="flex items-center gap-3">
+            {appliedDate && (
+              <span className="whitespace-nowrap">
+                Applied: {formatDate(appliedDate)}
+              </span>
+            )}
 
-        {secondaryLabel && <span>{secondaryLabel}</span>}
+            {secondaryLabel && (
+              <span className="whitespace-nowrap">{secondaryLabel}</span>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

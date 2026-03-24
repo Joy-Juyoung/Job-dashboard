@@ -1,8 +1,8 @@
 import { HiOutlineXMark } from "react-icons/hi2";
-import useJobForm from "../../hooks/useJobForm";
-import FormInput from "./form/FormInput";
-import FormDateInput from "./form/FormDateInput";
-import FormSelect from "./form/FormSelect";
+import FormInput from "./FormInput";
+import FormDateInput from "./FormDateInput";
+import FormSelect from "./FormSelect";
+import useJobForm from "../../../hooks/useJobForm";
 
 const statusOptions = [
   { value: "Applied", label: "Applied" },

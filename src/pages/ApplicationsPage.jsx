@@ -1,5 +1,5 @@
 import { useState } from "react";
-import AddJobForm from "../components/jobs/AddJobForm";
+import AddJobForm from "../components/jobs/form/AddJobForm";
 import ApplicationRow from "../components/jobs/ApplicationRow";
 import ApplicationsControls from "../components/jobs/ApplicationsControls";
 import useApplicationFilters from "../hooks/useApplicationFilters";

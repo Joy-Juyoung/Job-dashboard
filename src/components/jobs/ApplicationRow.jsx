@@ -1,23 +1,10 @@
 import { HiOutlinePencilSquare, HiOutlineTrash } from "react-icons/hi2";
 import JobSummary from "./JobSummary";
 import StatusBadge from "./StatusBadge";
-import { formatDate } from "../../utils/formatDate";
+import getJobSecondaryLabel from "../../utils/getJobSecondaryLabel";
 
 function ApplicationRow({ job, onEdit, onDelete }) {
-  const secondaryLabel =
-    job.status === "Interview"
-      ? job.interviewDate
-        ? `Interview: ${formatDate(job.interviewDate)}`
-        : ""
-      : job.status === "Offer"
-        ? job.offerDate
-          ? `Offer: ${formatDate(job.offerDate)}`
-          : ""
-        : job.status === "Rejected"
-          ? job.rejectedDate
-            ? `Rejected: ${formatDate(job.rejectedDate)}`
-            : ""
-          : "";
+  const secondaryLabel = getJobSecondaryLabel(job);
 
   return (
     <article className="rounded-2xl border border-gray-200 bg-white px-5 py-4 transition-shadow duration-200 hover:shadow-sm">
