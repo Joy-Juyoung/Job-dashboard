@@ -104,15 +104,7 @@ function ApplicationsPage({ jobList, onAddJob, onUpdateJob, onDeleteJob }) {
             {filteredJobs.map((job) => (
               <ApplicationRow
                 key={job.id}
-                id={job.id}
-                company={job.company}
-                position={job.position}
-                status={job.status}
-                location={job.location}
-                appliedDate={job.appliedDate}
-                interviewDate={job.interviewDate}
-                offerDate={job.offerDate}
-                rejectedDate={job.rejectedDate}
+                job={job}
                 onDelete={handleDelete}
                 onEdit={handleStartEdit}
               />

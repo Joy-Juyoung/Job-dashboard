@@ -6,7 +6,7 @@ import RecentApplicationsSection from "../components/dashboard/RecentApplication
 function DashboardPage({ jobList, dashboardStats, onAddJob }) {
   const [isFormOpen, setIsFormOpen] = useState(false);
 
-  const recentJobs = jobList.slice(0, 6);
+  const recentJobs = jobList.slice(0, 5);
 
   function handleCloseForm() {
     setIsFormOpen(false);

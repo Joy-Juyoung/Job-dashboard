@@ -25,16 +25,7 @@ function RecentApplicationsSection({ recentJobs }) {
       {recentJobs.length > 0 ? (
         <div className="grid gap-4 md:grid-cols-2">
           {recentJobs.map((job) => (
-            <JobCard
-              key={job.id}
-              id={job.id}
-              company={job.company}
-              position={job.position}
-              status={job.status}
-              location={job.location}
-              appliedDate={job.appliedDate}
-              showActions={false}
-            />
+            <JobCard key={job.id} job={job} showActions={false} />
           ))}
         </div>
       ) : (

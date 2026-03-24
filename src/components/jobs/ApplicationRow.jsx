@@ -3,31 +3,19 @@ import JobSummary from "./JobSummary";
 import StatusBadge from "./StatusBadge";
 import { formatDate } from "../../utils/formatDate";
 
-function ApplicationRow({
-  id,
-  company,
-  position,
-  status,
-  location,
-  appliedDate,
-  interviewDate,
-  offerDate,
-  rejectedDate,
-  onEdit,
-  onDelete,
-}) {
+function ApplicationRow({ job, onEdit, onDelete }) {
   const secondaryLabel =
-    status === "Interview"
-      ? interviewDate
-        ? `Interview: ${formatDate(interviewDate)}`
+    job.status === "Interview"
+      ? job.interviewDate
+        ? `Interview: ${formatDate(job.interviewDate)}`
         : ""
-      : status === "Offer"
-        ? offerDate
-          ? `Offer: ${formatDate(offerDate)}`
+      : job.status === "Offer"
+        ? job.offerDate
+          ? `Offer: ${formatDate(job.offerDate)}`
           : ""
-        : status === "Rejected"
-          ? rejectedDate
-            ? `Rejected: ${formatDate(rejectedDate)}`
+        : job.status === "Rejected"
+          ? job.rejectedDate
+            ? `Rejected: ${formatDate(job.rejectedDate)}`
             : ""
           : "";
 
@@ -35,32 +23,20 @@ function ApplicationRow({
     <article className="rounded-2xl border border-gray-200 bg-white px-5 py-4 transition-shadow duration-200 hover:shadow-sm">
       <div className="flex items-center justify-between gap-4">
         <JobSummary
-          company={company}
-          position={position}
-          location={location}
-          appliedDate={appliedDate}
+          company={job.company}
+          position={job.position}
+          location={job.location}
+          appliedDate={job.appliedDate}
           secondaryLabel={secondaryLabel}
         />
 
         <div className="flex items-center gap-3">
-          <StatusBadge status={status} />
+          <StatusBadge status={job.status} />
 
           <div className="flex items-center gap-1">
             <button
               type="button"
-              onClick={() =>
-                onEdit({
-                  id,
-                  company,
-                  position,
-                  status,
-                  location,
-                  appliedDate,
-                  interviewDate,
-                  offerDate,
-                  rejectedDate,
-                })
-              }
+              onClick={() => onEdit(job)}
               className="rounded-lg p-2 text-gray-500 transition-colors duration-200 hover:bg-gray-100 hover:text-gray-900"
               aria-label="Edit application"
               title="Edit"
@@ -70,7 +46,7 @@ function ApplicationRow({
 
             <button
               type="button"
-              onClick={() => onDelete(id)}
+              onClick={() => onDelete(job.id)}
               className="rounded-lg p-2 text-gray-500 transition-colors duration-200 hover:bg-red-50 hover:text-red-600"
               aria-label="Delete application"
               title="Delete"
