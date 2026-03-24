@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import JobCard from "../jobs/JobCard";
+import { HiArrowRight } from "react-icons/hi";
 
 function RecentApplicationsSection({ recentJobs }) {
   return (
@@ -19,6 +20,7 @@ function RecentApplicationsSection({ recentJobs }) {
           className="group inline-flex items-center gap-1 text-sm font-medium text-gray-600 transition-colors hover:text-gray-900"
         >
           Go to Applications
+          <HiArrowRight className="h-4 w-4 transform transition-transform duration-200 ease-out group-hover:translate-x-1" />
         </Link>
       </div>
 

@@ -1,6 +1,6 @@
-import { HiOutlinePencilSquare, HiOutlineTrash } from "react-icons/hi2";
 import JobSummary from "./JobSummary";
 import StatusBadge from "./StatusBadge";
+import JobItemActions from "./JobItemActions";
 import getJobSecondaryLabel from "../../utils/getJobSecondaryLabel";
 
 function ApplicationRow({ job, onEdit, onDelete }) {
@@ -20,27 +20,12 @@ function ApplicationRow({ job, onEdit, onDelete }) {
         <div className="flex items-center gap-3">
           <StatusBadge status={job.status} />
 
-          <div className="flex items-center gap-1">
-            <button
-              type="button"
-              onClick={() => onEdit(job)}
-              className="rounded-lg p-2 text-gray-500 transition-colors duration-200 hover:bg-gray-100 hover:text-gray-900"
-              aria-label="Edit application"
-              title="Edit"
-            >
-              <HiOutlinePencilSquare className="h-4 w-4" />
-            </button>
-
-            <button
-              type="button"
-              onClick={() => onDelete(job.id)}
-              className="rounded-lg p-2 text-gray-500 transition-colors duration-200 hover:bg-red-50 hover:text-red-600"
-              aria-label="Delete application"
-              title="Delete"
-            >
-              <HiOutlineTrash className="h-4 w-4" />
-            </button>
-          </div>
+          <JobItemActions
+            job={job}
+            onEdit={onEdit}
+            onDelete={onDelete}
+            variant="icon"
+          />
         </div>
       </div>
     </article>

@@ -1,5 +1,6 @@
 import StatusBadge from "./StatusBadge";
 import JobSummary from "./JobSummary";
+import JobItemActions from "./JobItemActions";
 
 function JobCard({ job, onDelete, onEdit, showActions = true }) {
   return (
@@ -16,23 +17,12 @@ function JobCard({ job, onDelete, onEdit, showActions = true }) {
           <StatusBadge status={job.status} />
 
           {showActions && (
-            <div className="flex gap-2">
-              <button
-                type="button"
-                onClick={() => onEdit(job)}
-                className="rounded-lg border border-gray-200 px-3 py-1.5 text-xs font-medium text-gray-600 transition hover:bg-gray-100"
-              >
-                Edit
-              </button>
-
-              <button
-                type="button"
-                onClick={() => onDelete(job.id)}
-                className="rounded-lg border border-gray-200 px-3 py-1.5 text-xs font-medium text-gray-600 transition hover:bg-gray-100"
-              >
-                Delete
-              </button>
-            </div>
+            <JobItemActions
+              job={job}
+              onEdit={onEdit}
+              onDelete={onDelete}
+              variant="button"
+            />
           )}
         </div>
       </div>
