@@ -26,4 +26,13 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.post("/", async (req, res) => {
+  try {
+    const newJob = await Job.create(req.body);
+    res.status(201).json(newJob);
+  } catch (error) {
+    res.status(500).json({ message: "Failed to create job" });
+  }
+});
+
 module.exports = router;
