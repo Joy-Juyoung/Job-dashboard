@@ -36,6 +36,8 @@ mongoose
   })
   .catch((error) => {
     console.error("MongoDB connection error:", error);
+
+    process.exit(1);
   });
 
 console.log("Render PORT:", process.env.PORT);
