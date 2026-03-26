@@ -34,12 +34,13 @@ export async function createJob(jobData) {
     body: JSON.stringify(jobData),
   });
 
+  const data = await response.json();
+
   if (!response.ok) {
-    throw new Error("Failed to create job");
+    throw new Error(data.message || "Failed to create job");
   }
 
-  const createdJob = await response.json();
-  return normalizeJob(createdJob);
+  return normalizeJob(data);
 }
 
 export async function updateJobApi(id, updatedData) {

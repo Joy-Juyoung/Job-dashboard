@@ -2,14 +2,48 @@ const mongoose = require("mongoose");
 
 const jobSchema = new mongoose.Schema(
   {
-    company: String,
-    position: String,
-    status: String,
-    location: String,
-    appliedDate: String,
-    interviewDate: String,
-    offerDate: String,
-    rejectedDate: String,
+    company: {
+      type: String,
+      required: [true, "Company is required"],
+      trim: true,
+      minlength: [2, "Company must be at least 2 characters"],
+      maxlength: [100, "Company must be less than 100 characters"],
+    },
+    position: {
+      type: String,
+      required: [true, "Position is required"],
+      trim: true,
+      minlength: [2, "Position must be at least 2 characters"],
+      maxlength: [100, "Position must be less than 100 characters"],
+    },
+    status: {
+      type: String,
+      enum: ["Applied", "Interview", "Offer", "Rejected"],
+      default: "Applied",
+    },
+    location: {
+      type: String,
+      trim: true,
+      maxlength: [100, "Location must be less than 100 characters"],
+      default: "",
+    },
+    appliedDate: {
+      type: String,
+      required: [true, "Applied date is required"],
+      default: "",
+    },
+    interviewDate: {
+      type: String,
+      default: "",
+    },
+    offerDate: {
+      type: String,
+      default: "",
+    },
+    rejectedDate: {
+      type: String,
+      default: "",
+    },
   },
   {
     timestamps: true,

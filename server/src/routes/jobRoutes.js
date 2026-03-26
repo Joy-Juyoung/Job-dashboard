@@ -4,6 +4,17 @@ const router = express.Router();
 
 const Job = require("../models/Job");
 
+function handleMongooseError(error, res, fallbackMessage) {
+  if (error.name === "ValidationError") {
+    return res.status(400).json({
+      message: "Validation failed",
+      errors: Object.values(error.errors).map((err) => err.message),
+    });
+  }
+
+  return res.status(500).json({ message: fallbackMessage });
+}
+
 router.get("/", async (req, res) => {
   try {
     const jobs = await Job.find().sort({ createdAt: -1 });
@@ -36,7 +47,7 @@ router.post("/", async (req, res) => {
     const newJob = await Job.create(req.body);
     res.status(201).json(newJob);
   } catch (error) {
-    res.status(500).json({ message: "Failed to create job" });
+    handleMongooseError(error, res, "Failed to create job");
   }
 });
 
@@ -57,7 +68,7 @@ router.patch("/:id", async (req, res) => {
 
     res.status(200).json(updatedJob);
   } catch (error) {
-    res.status(500).json({ message: "Failed to update job" });
+    handleMongooseError(error, res, "Failed to update job");
   }
 });
 
