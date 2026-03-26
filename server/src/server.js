@@ -44,7 +44,3 @@ console.log("Render PORT:", process.env.PORT);
 console.log("MONGO_URI exists:", Boolean(process.env.MONGO_URI));
 console.log("JWT_SECRET exists:", Boolean(process.env.JWT_SECRET));
 console.log("CLIENT_URL exists:", Boolean(process.env.CLIENT_URL));
-
-if (process.env.MONGO_URI) {
-  console.log("MONGO_URI prefix:", process.env.MONGO_URI.slice(0, 15));
-}
