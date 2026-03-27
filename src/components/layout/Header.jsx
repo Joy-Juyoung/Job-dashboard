@@ -8,6 +8,7 @@ function Header({ setIsSidebarOpen }) {
   function handleLogout() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    localStorage.removeItem("jobs");
     navigate("/login", { replace: true });
   }
 

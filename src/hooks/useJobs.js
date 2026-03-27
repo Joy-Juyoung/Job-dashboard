@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from "react";
-import initialJobs from "../data/jobs";
 import {
   fetchJobs,
   createJob,
@@ -18,21 +17,14 @@ function getLatestDate(dateList) {
 }
 
 function useJobs() {
-  const [jobList, setJobList] = useState(() => {
-    const savedJobs = localStorage.getItem("jobs");
-
-    if (savedJobs) {
-      return JSON.parse(savedJobs);
-    }
-
-    return initialJobs;
-  });
+  const [jobList, setJobList] = useState([]);
 
   useEffect(() => {
     async function loadJobs() {
       const token = localStorage.getItem("token");
 
       if (!token) {
+        setJobList([]);
         return;
       }
 
@@ -41,15 +33,12 @@ function useJobs() {
         setJobList(jobsFromApi);
       } catch (error) {
         console.error("Failed to load jobs from API:", error);
+        setJobList([]);
       }
     }
 
     loadJobs();
   }, []);
-
-  useEffect(() => {
-    localStorage.setItem("jobs", JSON.stringify(jobList));
-  }, [jobList]);
 
   async function addJob(newJob) {
     try {
